@@ -1,3 +1,180 @@
+# SFDXLabs | Component Laboratory
+
+Welcome to **SFDXLabs Component Laboratory**, a repository of Salesforce Lightning Web Components designed to build on and improve the standard components offered by Salesforce.
+
+Our mission is to provide modern, highly configurable, and production-ready components that solve real-world problems Salesforce admins and developers face daily. Each component is designed with a focus on user experience, accessibility, and ease of configuration through the Lightning App Builder.
+
+## Available Components
+
+| Component | Description |
+|-----------|-------------|
+| [Lookup Detail Card](#lookup-detail-card) | Display key fields from a lookup record in a modern card UI |
+| [Custom List View](#custom-list-view-lwc-component) | Enhanced list view with filtering, bulk actions, and modern styling |
+
+---
+
+# Lookup Detail Card
+
+A modern, configurable Lightning Web Component that allows you to easily highlight lookup records from the record page. Perfect for displaying key information from related records without requiring users to navigate away.
+
+**Modern UI**  
+<img width="494" height="343" alt="Image" src="https://github.com/user-attachments/assets/71ed5986-2eb2-4916-8c43-191ebc146e98" />
+
+## Features
+
+### Core Features
+- **Modern UI Design**: Clean, polished interface with smooth animations and hover effects
+- **Fully Configurable**: All settings exposed through Lightning App Builder properties
+- **Dynamic Titles**: Use `{FieldName}` placeholders in titles and subtitles
+- **Up to 6 Configurable Fields**: Display the most important fields from your lookup record
+- **Smart Field Formatting**: Automatic formatting for dates, currency, percentages, booleans, emails, phones, and URLs
+- **Responsive Design**: Works on desktop and mobile devices
+- **Quick Actions**: View, Edit, and Refresh actions built-in
+
+### Field Type Support
+| Field Type | Rendering |
+|------------|-----------|
+| Text/String | Plain text |
+| Boolean | Check/X icon with Yes/No label |
+| Currency | Formatted with currency symbol |
+| Percent | Formatted with % symbol |
+| Date | Localized date format (e.g., Jan 15, 2025) |
+| DateTime | Localized date and time |
+| Email | Clickable mailto link |
+| Phone | Clickable tel link |
+| URL | Clickable link |
+
+## Installation
+
+### Deploy to Salesforce
+
+1. Clone this repository or copy the files
+2. Deploy using Salesforce CLI:
+
+```bash
+sf project deploy start --source-dir force-app
+```
+
+Or use VS Code with Salesforce Extensions:
+1. Right-click on the `force-app` folder
+2. Select "SFDX: Deploy Source to Org"
+
+### Files Structure
+
+```
+force-app/
+└── main/
+    └── default/
+        ├── classes/
+        │   ├── LookupDetailCardController.cls
+        │   └── LookupDetailCardController.cls-meta.xml
+        └── lwc/
+            └── lookupDetailCard/
+                ├── lookupDetailCard.html
+                ├── lookupDetailCard.js
+                ├── lookupDetailCard.css
+                └── lookupDetailCard.js-meta.xml
+```
+
+## Configuration Properties
+
+Add the component to any Lightning Record Page and configure it using the following properties:
+
+### Lookup Configuration
+
+| Property | Description | Type | Required |
+|----------|-------------|------|----------|
+| **Lookup Field API Name** | The API name of the lookup field on the current record | Text | Yes |
+
+**Examples:** `AccountId`, `ContactId`, `Custom_Lookup__c`
+
+### Card Display Configuration
+
+| Property | Description | Type | Default |
+|----------|-------------|------|---------|
+| **Card Icon** | SLDS icon name for the card header | Text | `standard:account` |
+| **Card Title** | Title for the card (supports `{FieldName}` placeholders) | Text | _(uses record Name)_ |
+| **Card Subtitle** | Subtitle for the card (supports `{FieldName}` placeholders) | Text | _(uses object label)_ |
+
+**Icon Examples:** `standard:account`, `standard:contact`, `standard:opportunity`, `custom:custom1`
+
+**Dynamic Placeholder Examples:**
+- Title: `{Name}` → "Acme Corporation"
+- Title: `{Name} - {Industry}` → "Acme Corporation - Technology"
+- Subtitle: `Account since {CreatedDate}` → "Account since Jan 15, 2020"
+
+### Field Configuration (1-6)
+
+Each field has two properties:
+
+| Property | Description | Example |
+|----------|-------------|---------|
+| **Field X - API Name** | API name of the field to display | `Industry`, `AnnualRevenue`, `Phone` |
+| **Field X - Custom Label** | Override the default field label | `Revenue`, `Main Phone` |
+
+## Usage Examples
+
+### Example 1: Account Details on Opportunity
+
+Display key account information when viewing an Opportunity.
+
+**Configuration:**
+- Lookup Field API Name: `AccountId`
+- Card Icon: `standard:account`
+- Card Title: `{Name}`
+- Card Subtitle: `Account Details`
+- Field 1: `Industry` / `Industry`
+- Field 2: `AnnualRevenue` / `Annual Revenue`
+- Field 3: `Phone` / `Phone`
+- Field 4: `Website` / `Website`
+- Field 5: `NumberOfEmployees` / `Employees`
+- Field 6: `BillingCity` / `City`
+
+### Example 2: Contact Info on Case
+
+Display contact information when viewing a Case.
+
+**Configuration:**
+- Lookup Field API Name: `ContactId`
+- Card Icon: `standard:contact`
+- Card Title: `{Name}`
+- Card Subtitle: `{Title}`
+- Field 1: `Email` / `Email`
+- Field 2: `Phone` / `Phone`
+- Field 3: `Department` / `Department`
+- Field 4: `MailingCity` / `City`
+
+### Example 3: Custom Lookup with Corner Accent
+
+Display a custom related record.
+
+**Configuration:**
+- Lookup Field API Name: `Primary_Vendor__c`
+- Card Icon: `standard:partners`
+- Card Title: `{Name}`
+- Card Subtitle: `Primary Vendor`
+- Field 1: `Vendor_Type__c` / `Type`
+- Field 2: `Contract_Value__c` / `Contract Value`
+- Field 3: `Contract_End_Date__c` / `Contract Ends`
+- Field 4: `Primary_Contact_Email__c` / `Contact Email`
+
+## Troubleshooting
+
+### "Missing record ID or lookup field configuration"
+- Ensure the component is placed on a Record Page (not App Page or Home Page without record context)
+- Verify the Lookup Field API Name is entered correctly
+
+### Empty state showing when lookup has a value
+- Check that the lookup field API name matches exactly (case-sensitive for custom fields)
+- Verify the running user has access to the lookup field and the related record
+
+### Fields not displaying
+- Ensure field API names are entered correctly
+- Verify the running user has field-level security access to the fields
+- Check that the fields exist on the lookup object
+
+---
+
 # Custom List View LWC Component
 
 A modern, configurable Lightning Web Component that replaces the standard Salesforce list view with an enhanced, customizable UI.
@@ -436,6 +613,8 @@ handleRowActionSelect(event) {
 - Check that filter values exactly match the field values in your data
 - Verify the field API name is correct
 - Check the browser console for any error messages
+
+---
 
 ## License
 
