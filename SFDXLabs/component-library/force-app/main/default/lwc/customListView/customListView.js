@@ -309,6 +309,7 @@ export default class CustomListView extends NavigationMixin(LightningElement) {
                         ? (this.sortDirection === 'ASC' ? 'utility:arrowup' : 'utility:arrowdown')
                         : 'utility:sort',
                     sortButtonClass: isSorted ? 'sort-button active' : 'sort-button',
+                    sortTitle: `Sort by ${config.label || metadata.label || config.field}`,
                     displayAsPill: config.displayAsPill,
                     pillColorMap: pillColorMap
                 });

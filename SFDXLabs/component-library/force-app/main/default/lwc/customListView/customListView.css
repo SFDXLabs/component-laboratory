@@ -26,8 +26,8 @@
     background: var(--background-white);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-sm);
-    overflow: hidden;
     font-family: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    position: relative;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -41,6 +41,7 @@
     padding: 1rem 1.25rem;
     border-bottom: 1px solid var(--border-color);
     background: linear-gradient(to bottom, #ffffff 0%, #fafaf9 100%);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .header-left {
@@ -252,7 +253,7 @@
     border: 1px solid var(--border-color);
     border-radius: 4px;
     box-shadow: var(--shadow-md);
-    z-index: 9000;
+    z-index: 8999;
 }
 
 .filter-option {
@@ -344,7 +345,13 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 .table-wrapper {
-    overflow-x: auto;
+    overflow: scroll;
+    position: relative;
+}
+
+/* Ensure last row dropdown can expand downward */
+.data-table tbody tr:last-child {
+    position: relative;
 }
 
 .data-table {
@@ -470,11 +477,54 @@
     width: 80px;
     text-align: center;
     padding: 0.5rem 0.75rem;
+    overflow: visible;
+    position: relative;
 }
 
 .actions-cell lightning-button-menu {
     --slds-c-button-neutral-color-background: transparent;
     --slds-c-button-neutral-color-border: var(--border-color);
+}
+
+/* Fix dropdown visibility - ensure it's not clipped by table */
+.data-table {
+    overflow: visible;
+}
+
+.data-table tbody {
+    overflow: visible;
+}
+
+.data-table tr {
+    overflow: visible;
+}
+
+.data-table td {
+    overflow: visible;
+}
+
+/* Actions cell - ensure dropdown appears above other rows */
+.actions-cell {
+    position: relative;
+    z-index: 1;
+}
+
+/* When hovering or focusing on actions cell, raise it above siblings */
+.actions-cell:hover,
+.actions-cell:focus-within {
+    z-index: 9999;
+}
+
+/* Force SLDS dropdown to be above everything */
+.actions-cell lightning-button-menu {
+    position: relative;
+    z-index: 1;
+}
+
+/* Target the actual dropdown list */
+.actions-cell lightning-button-menu,
+.actions-cell lightning-button-menu * {
+    overflow: visible !important;
 }
 
 .cell-value {
@@ -559,6 +609,7 @@
     padding: 0.875rem 1.25rem;
     border-top: 1px solid var(--border-color);
     background: var(--background-light);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
 .pagination-info {
