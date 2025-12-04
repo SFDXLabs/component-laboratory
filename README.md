@@ -2,7 +2,14 @@
 
 A modern, configurable Lightning Web Component that replaces the standard Salesforce list view with an enhanced, customizable UI.
 
+**New improved UI**  
 <img width="2472" height="1008" alt="Image" src="https://github.com/user-attachments/assets/8c2d4399-92a6-412c-a09f-ff53817f28bd" />
+
+**Selectable rows with visual indicators**  
+<img width="2476" height="1030" alt="Image" src="https://github.com/user-attachments/assets/10c27ae8-43b4-4339-aeb9-4e223833e99d" />
+
+**Highly customisable**  
+<img width="582" height="597" alt="Image" src="https://github.com/user-attachments/assets/fce81f92-867f-442a-8390-4939e460af36" />
 
 ## Features
 
