@@ -22,6 +22,7 @@ A modern, configurable Lightning Web Component that replaces the standard Salesf
 - **Dynamic SOQL Queries**: Support for any object with `{recordId}` and `{currentUserId}` placeholders
 - **Up to 10 Configurable Columns**: Each with custom labels and automatic field type detection
 - **Smart Search**: Real-time filtering across text fields with debouncing
+- **Intelligent File Detection**: When files are identified, display the FileType icon as well as view / download the file 
 - **Sortable Columns**: Click-to-sort with ascending/descending toggle
 - **Pagination**: Configurable records per page with intuitive navigation
 - **Field Type Formatting**: Automatic formatting for dates, currency, percentages, booleans, emails, phones, and URLs
@@ -42,6 +43,8 @@ A modern, configurable Lightning Web Component that replaces the standard Salesf
 - **View Record**: Navigate to record detail page
 - **Edit Record**: Navigate to record edit page
 - **Change Owner**: Change owner for individual record
+- **View File**: Directly preview a file from the current page
+- **Download File**: Download the currently selected file
 
 ### Quick Filters
 - **Multi-Select Filters**: Filter bar with dropdown filters for picklist columns
