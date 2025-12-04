@@ -8,8 +8,11 @@ A modern, configurable Lightning Web Component that replaces the standard Salesf
 **Selectable rows with visual indicators**  
 <img width="2476" height="1030" alt="Image" src="https://github.com/user-attachments/assets/10c27ae8-43b4-4339-aeb9-4e223833e99d" />
 
+**Intelligent file type detection**  
+<img width="1004" height="421" alt="Image" src="https://github.com/user-attachments/assets/6164f1b9-829d-491b-8a7b-01e92029251c" />
+
 **Highly customisable**  
-<img width="582" height="597" alt="Image" src="https://github.com/user-attachments/assets/fce81f92-867f-442a-8390-4939e460af36" />
+<img width="582" height="597" alt="Image" src="https://github.com/user-attachments/assets/cbda8b87-f4b5-41f1-8aef-0212b1474c57" />
 
 ## Features
 
